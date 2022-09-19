@@ -112,24 +112,37 @@ Jumlah data test: 7137
 ```
 
 2. Melakukan Standarisasi Data numerik
-pada tahap ini kita akan melakukan standarisasi pada data numerik agar data yang kita miliki mempunyai skala yang sama sehingga dapat diolah oleh algoritma
-StandardScaler melakukan proses standarisasi fitur dengan mengurangkan mean (nilai rata-rata) kemudian membaginya dengan standar deviasi untuk menggeser distribusi.  StandardScaler menghasilkan distribusi dengan standar deviasi sama dengan 1 dan mean sama dengan 0. Sekitar 68% dari nilai akan berada di antara -1 dan 1
-Setelah itu kita dapat mengecek nilai mean dan standar deviasi
+Pada tahap ini kita akan melakukan standarisasi pada data numerik agar data yang kita miliki mempunyai skala yang sama sehingga dapat diolah oleh algoritma
+StandardScaler melakukan proses standarisasi fitur dengan mengurangkan mean (nilai rata-rata) kemudian membaginya dengan standar deviasi untuk menggeser distribusi.  StandardScaler menghasilkan distribusi dengan standar deviasi sama dengan 1 dan mean sama dengan 0. 
+
+Setelah itu kita dapat mengecek nilai mean dan standar deviasi, menggunakan kode di bawah ini
 ```
 X_train[numerical_features].describe().round(4)
 ```
 ![images](https://github.com/HanaOctavia/asset-projek-1/blob/b94d01a3637e4aa6df04f94a5e52380181de0e99/mean%20dan%20deviasi.png)
+Dari gambar di atas menunjukan nilai mean = 0 dan standar deviasi = 1.
 
 ## Modeling
 Model Machine Learning yang saya gunakan untuk menyelesaikan masalah adalah :
 1. Bernoulli Naive Bayes
-Dalam penelitian Dewi dkk menyatakan bahwa Bernoulli Naïve bayes lebih unggul dibanding metode Gaussian Naïve Bayes, dikarenakan data yang digunakan untuk penelian terdiri dari beberapa variabel yang memiliki nilai biner. [2]. Berikut ini adalah potongan kode untuk melatih model menggunakan Bernoulli Naive Bayes
+Dalam penelitian Dewi dkk menyatakan bahwa Bernoulli Naïve bayes lebih unggul dibanding metode Gaussian Naïve Bayes, dikarenakan data yang digunakan untuk penelian terdiri dari beberapa variabel yang memiliki nilai biner. [2] Cara kerja Naive bayes sendiri adalah menghitung peluang dari satu kelas dari masing-masing kelompok atribut yang ada dan menentukan kelas mana yang paling optimal. Pada kasus ini saya menghitung peluang adanya asap rokok dengan menggunakan beberapa variabel yang ada.
+```
+bnb = BernoulliNB()
+```
 
 2. Support Vector Machine
-Dalam penelitian Ichwan dkk metode SVM berdasarkan penelitian ini menyatakan bawah SVM mampu menghasilkan model klasifikasi yang baik meskipun dilatih dengan data yang sedikit. Kelemahan metode SVM berdasarkan penelitian ini adalah sulit diterapkan untuk data yang memiliki jumlah dimensi yang sangat besar[3]. Berikut ini adalah potongan kode untuk melatih model menggunakan SVM
+Dalam penelitian Ichwan dkk metode SVM berdasarkan penelitian ini menyatakan bawah SVM mampu menghasilkan model klasifikasi yang baik meskipun dilatih dengan data yang sedikit. Kelemahan metode SVM berdasarkan penelitian ini adalah sulit diterapkan untuk data yang memiliki jumlah dimensi yang sangat besar[3]. Cara kerja SVM adalah dengan menempatkan garis lurus(decision boundary) untuk membagi 2 kelas. Untuk mendapatkan decision boundary terbaik, svm menggunakan metode Soft-Margin, dan kernel. Dalam pelatihan model, saya menggunakan SVM untuk 2 kelas yaitu ada asap rokok dan tidak ada asap rokok.
+```
+svc = SVC(random_state = 42)
+```
 
 3. Logistic Regression
-Regresi Logistik adalah metode klasifikasi yang memperkirakan probabilitas suatu peristiwa terjadi. Berikut ini adalah potongan kode untuk melatih model menggunakan Logistic Regression :
+Regresi Logistik adalah metode klasifikasi yang memperkirakan probabilitas suatu peristiwa terjadi. Pada kasus ini, yaitu pendeteksi asap rokok yang merupakan kalasifikasi ada atau tidaknya asap rokok, logistic regression bekerja dengan menghitung probabilitas kelas dari sampel yang ada. 
+```
+LR = LogisticRegression(solver='lbfgs', max_iter=1000)
+```
+Tuning hyperparameters :
+solver : metode optimasi kita set 'lbfgs'
 
 Setelah dilakukan pelatihan 1 di antara 3 model ini menghasilkan hasil yang cukup jauh perbedaannya. Model ini adalah Bernoulli Naive Bayes, saat melakukan pelatihan dan melihat nilai akurasi dan f1 score, model ini menghasilkan nilai yang rendah dan perbedaan cukup signifikan dari model yang menggunakan algoritma SVM dan Logistic Regression.
 Maka dari itu **model terbaik** untuk solusi dari masalah yang dipaparkan adalah menggunakan model yang dilatih dengan **algoritma SVM dan Logistic Regression**
@@ -180,9 +193,13 @@ bnb f1 score : 0.884
 svc f1 score : 1.000
 LR f1 score : 1.000
 ```
+Plot metrik dengan bar chart :
+![gambar](https://github.com/HanaOctavia/asset-projek-1/blob/8efd70cb9fc0379a04601425fc6f0d021a062f6f/plot%20metrik.png)
+
+Dari gambar di atas, skor akurasi dan f1 untuk model svc dan LR bernilai 1 sesuai dengan perhitungan di atas, tetapi model bnb juga pada skor akurasi dan f1 bernilai 1 di plot tetapi tidak sesuai dengan perhitungan di atas yaitu acc = 0.820 dan f1_score = 0,820.
 
 ## Kesimpulan
-Berdasarkan hasil pelatihan model menggunakan 3 algoritma berbeda dan 2  metrik evaluasi, dan prediksi menunjukan model yang tepat untuk melakukan predeksi ada tidaknya asap rokok adalah model yang dibangun dengan algoritma Support Vector Machine dan Logistic Regression
+Berdasarkan hasil pelatihan model menggunakan 3 algoritma berbeda dan evaluasi menggunakan 2  metrik evaluasi yaitu akurasi dan f1 score, kemudian melakukan prediksi, menunjukan model yang tepat untuk melakukan predeksi ada tidaknya asap rokok adalah model yang dibangun dengan Bernaullie Naive Bayes, algoritma Support Vector Machine dan Logistic Regression. Ketiga algortima ini menunjukan hasil prediksi yang baik dan hasil akurasi di atas 80%
 
 ## Referensi
 [1] Buleleng, Admin., 2021. *Mengenal Rokok Serta Dampaknya Bagi Kesehatan*. [Online] 
