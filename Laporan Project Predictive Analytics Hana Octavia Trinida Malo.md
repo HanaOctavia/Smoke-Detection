@@ -194,6 +194,7 @@ svc f1 score : 1.000
 LR f1 score : 1.000
 ```
 Plot metrik dengan bar chart :
+
 ![gambar](https://github.com/HanaOctavia/asset-projek-1/blob/8efd70cb9fc0379a04601425fc6f0d021a062f6f/plot%20metrik.png)
 
 Dari gambar di atas, skor akurasi dan f1 untuk model svc dan LR bernilai 1 sesuai dengan perhitungan di atas, tetapi model bnb juga pada skor akurasi dan f1 bernilai 1 di plot tetapi tidak sesuai dengan perhitungan di atas yaitu acc = 0.820 dan f1_score = 0,820.
