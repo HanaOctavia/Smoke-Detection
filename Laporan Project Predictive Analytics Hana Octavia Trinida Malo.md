@@ -57,7 +57,9 @@ Dataset ini memiliki target variabel dengan value biner (0 dan 1). Selain itu, d
 ### Exploratory Data Analysis
 
 #### Mengatasi Outliners
-Mengecek apakah variabel-variabel yang ada mempunyai outliners dengan boxplot. Karena variabel-variabel yang ada pada dataset terdeteksi outliners maka kita dapat mengatasinya dengan **IQR Method**
+Mengecek apakah variabel-variabel yang ada mempunyai outliners dengan boxplot.
+![boxplotoutliners](https://github.com/HanaOctavia/asset-projek-1/blob/b94d01a3637e4aa6df04f94a5e52380181de0e99/boxplot%20outliners.png)
+Karena variabel-variabel yang ada pada dataset terdeteksi outliners maka kita dapat mengatasinya dengan **IQR Method**
 Hasil dari penggunaan IQR Method
 ```
 (35684, 15)
@@ -69,8 +71,8 @@ Pada proses ini, saya membagi fitur pada dataset menjadi dua bagian, yaitu numer
 numerical_features = ['UTC', 'Temperature[C]', 'Humidity[%]', 'TVOC[ppb]', 'eCO2[ppm]', 'Raw H2', 'Raw Ethanol', 'Pressure[hPa]', 'PM1.0', 'PM2.5', 'NC0.5', 'NC1.0', 'NC2.5', 'CNT']
 categorical_features =  ['Fire Alarm']
 ```
-Kemudian menganalisisnya categorical_features menggunakan grafik yang menujukan jumlah sample dan presentasi per value dalam variabel 'Fire Alarm'.
-
+Kemudian menganalisisnya categorical_features menggunakan grafik yang menunjukan jumlah sample dan presentasi per value dalam variabel 'Fire Alarm'.
+![gambar](https://github.com/HanaOctavia/asset-projek-1/blob/b94d01a3637e4aa6df04f94a5e52380181de0e99/grafik%20categorikal.png)
 Selanjutnya melakukan visualisasi data untuk numerical_features
 ```
 sp.hist(bins=50, figsize=(20,15), color='pink')
@@ -85,6 +87,7 @@ correlation_matrix = sp.corr().round(2)
 sns.heatmap(data=correlation_matrix, annot=True, cmap='Purples', linewidths=0.5, )
 plt.title("Correlation Matrix untuk Fitur Numerik ", size=20)
 ```
+![gambar](https://github.com/HanaOctavia/asset-projek-1/blob/b94d01a3637e4aa6df04f94a5e52380181de0e99/metrik.png))
 Dari visualisasi di atas ada beberapa kesimpulan
 - variabel CNT memiliki korelasi yang paling tinggi dengan Fire Alarm, namun sayangnya data yang dimiliki tidak berpengaruh pada Fire alarm karena hanya merupakan data Simple count
 - variabel TVOC[ppb] memiliki korelasi yang paling tinggi dengan variabele fire alarm
@@ -93,12 +96,9 @@ Dari visualisasi di atas ada beberapa kesimpulan
 ## Data Preparation
 Pada Data Preparation ada beberapa tahap yang harus dilakukan
 1. Membagi data train dan data test
-Pembagian dataset menjadi data train dan data test ini dilakukan dengan perbandingan 8:2 sehingga pada test_size diset 0.2. Pembagian dataset ini bertujuan agar memudahkan kita dalam proses evaluasi performa model
+Pembagian dataset menjadi data train dan data test ini dilakukan dengan perbandingan 8:2 sehingga pada test_size diset 0.2. Pembagian dataset ini bertujuan agar memudahkan kita dalam proses evaluasi performa model dan agar kita tidak mengotori data uji dengan informasi yang kita dapat dari data latih. 
+
 ```
-from sklearn.model_selection import train_test_split
- 
-X = sp.drop(["Fire Alarm"],axis =1)
-y = sp["Fire Alarm"]
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 123) 
 ```
 Berikut ini adalah jumlah keseluruhan data, data train, dan data set
@@ -109,47 +109,25 @@ Jumlah data test: 7137
 ```
 
 2. Melakukan Standarisasi Data numerik
-pada tahap ini kita akan melakukan standarisasi pada data numerik agar data yang kita miliki mempunyai skala yang sama, seperti di bawah ini
+pada tahap ini kita akan melakukan standarisasi pada data numerik agar data yang kita miliki mempunyai skala yang sama sehingga dapat diolah oleh algoritma
+StandardScaler melakukan proses standarisasi fitur dengan mengurangkan mean (nilai rata-rata) kemudian membaginya dengan standar deviasi untuk menggeser distribusi.  StandardScaler menghasilkan distribusi dengan standar deviasi sama dengan 1 dan mean sama dengan 0. Sekitar 68% dari nilai akan berada di antara -1 dan 1
+Setelah itu kita dapat mengecek nilai mean dan standar deviasi
 ```
-from sklearn.preprocessing import StandardScaler
- 
-numerical_features = ['TVOC[ppb]', 'Raw H2', 'Raw Ethanol', 'Pressure[hPa]', 'PM1.0', 'PM2.5', 'NC0.5', 'NC1.0', 'NC2.5']
-scaler = StandardScaler()
-scaler.fit(X_train[numerical_features])
-X_train[numerical_features] = scaler.transform(X_train.loc[:, numerical_features])
-X_train[numerical_features].head()
+X_train[numerical_features].describe().round(4)
 ```
+![images](https://github.com/HanaOctavia/asset-projek-1/blob/b94d01a3637e4aa6df04f94a5e52380181de0e99/mean%20dan%20deviasi.png)
 
 ## Modeling
 Model Machine Learning yang saya gunakan untuk menyelesaikan masalah adalah :
 1. Bernoulli Naive Bayes
 Dalam penelitian Dewi dkk menyatakan bahwa Bernoulli Naïve bayes lebih unggul dibanding metode Gaussian Naïve Bayes, dikarenakan data yang digunakan untuk penelian terdiri dari beberapa variabel yang memiliki nilai biner. [2]. Berikut ini adalah potongan kode untuk melatih model menggunakan Bernoulli Naive Bayes
-```
-from sklearn.naive_bayes import BernoulliNB
 
-bnb = BernoulliNB()
-bnb.fit(X_train, y_train)
-
-sp.loc['train_mse','naive_bayes'] = mean_squared_error(y_pred = bnb.predict(X_train), y_true=y_train)
-```
 2. Support Vector Machine
 Dalam penelitian Ichwan dkk metode SVM berdasarkan penelitian ini menyatakan bawah SVM mampu menghasilkan model klasifikasi yang baik meskipun dilatih dengan data yang sedikit. Kelemahan metode SVM berdasarkan penelitian ini adalah sulit diterapkan untuk data yang memiliki jumlah dimensi yang sangat besar[3]. Berikut ini adalah potongan kode untuk melatih model menggunakan SVM
-```
-from sklearn.svm import SVC
-svc = SVC(random_state = 42)
-svc.fit(X_train, y_train)
- 
-sp.loc['train_mse','svc'] = mean_squared_error(y_pred = svc.predict(X_train), y_true=y_train)
-```
+
 3. Logistic Regression
 Regresi Logistik adalah metode klasifikasi yang memperkirakan probabilitas suatu peristiwa terjadi. Berikut ini adalah potongan kode untuk melatih model menggunakan Logistic Regression :
-```
-from sklearn.linear_model import LogisticRegression
 
-LR = LogisticRegression(solver='lbfgs', max_iter=1000)
-LR.fit(X_train, y_train)
-sp.loc['train_mse','LR'] = mean_squared_error(y_pred=LR.predict(X_train), y_true=y_train)
-```
 Setelah dilakukan pelatihan 1 di antara 3 model ini menghasilkan hasil yang cukup jauh perbedaannya. Model ini adalah Bernoulli Naive Bayes, saat melakukan pelatihan dan melihat nilai akurasi dan f1 score, model ini menghasilkan nilai yang rendah dan perbedaan cukup signifikan dari model yang menggunakan algoritma SVM dan Logistic Regression.
 Maka dari itu **model terbaik** untuk solusi dari masalah yang dipaparkan adalah menggunakan model yang dilatih dengan **algoritma SVM dan Logistic Regression**
 
@@ -212,4 +190,4 @@ Available at: https://buleleng.bulelengkab.go.id/informasi/detail/artikel/58-men
 [3]Ichwan, M., Dewi, I. A. & S, Z. M., 2018. Klasifikasi Support Vector Machine (SVM) Untuk Menentukan TingkatKemanisan Mangga Berdasarkan Fitur Warna. *MIND Journal* , 3(2), pp. 16-24.
 [4]Satria, F., Zamhariri & Syaripudin, M. A., 2020. Prediksi Ketepatan Waktu Lulus Mahasiswa Menggunakan Algoritma C4.5 Pada Fakultas Dakwah Dan Ilmu Komunikasi UIN Raden Intan Lampung. *Jurnal Ilmiah MATRIK*, 22(1), pp. 28-35.
 
-![gambar](https://github.com/HanaOctavia/asset-projek-1/blob/37d2ac6cf5aaad3bdcc4f657bcf61f9bc892dc6b/Screenshot%20(4).png)
+
