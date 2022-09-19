@@ -58,7 +58,7 @@ Dataset ini memiliki target variabel dengan value biner (0 dan 1). Selain itu, d
 
 #### Mengatasi Outliners
 Mengecek apakah variabel-variabel yang ada mempunyai outliners dengan boxplot.
-![boxplotoutliners](https://github.com/HanaOctavia/asset-projek-1/blob/b94d01a3637e4aa6df04f94a5e52380181de0e99/boxplot%20outliners.png)
+![boxplot outliners](https://user-images.githubusercontent.com/86582130/190961263-4610b2dc-cd2a-4403-82b1-c887bb086112.png)
 
 Dari gambar di atas, terlihat bahwa variabel-variabel yang ada pada dataset terdeteksi outliners maka kita dapat mengatasinya dengan **IQR Method**
 Hasil dari penggunaan IQR Method
@@ -73,13 +73,15 @@ numerical_features = ['UTC', 'Temperature[C]', 'Humidity[%]', 'TVOC[ppb]', 'eCO2
 categorical_features =  ['Fire Alarm']
 ```
 Kemudian menganalisisnya categorical_features menggunakan grafik yang menunjukan jumlah sample dan presentasi per value dalam variabel 'Fire Alarm'.
-![gambar](https://github.com/HanaOctavia/asset-projek-1/blob/b94d01a3637e4aa6df04f94a5e52380181de0e99/grafik%20categorikal.png)
+![grafik categorikal](https://user-images.githubusercontent.com/86582130/190961243-aeddb0ea-d359-4298-a965-e2200d4dcd98.png)
+
 Selanjutnya melakukan visualisasi data untuk numerical_features
 ```
 sp.hist(bins=50, figsize=(20,15), color='pink')
 plt.show()
 ```
-![gambar](https://github.com/HanaOctavia/asset-projek-1/blob/266c653d41b4c987b1659c9bed1de8c0712e134b/Screenshot%20(439).png)
+![Screenshot (439)](https://user-images.githubusercontent.com/86582130/190961226-d56e4502-1df0-4edc-b3dc-47607a547b21.png)
+
 
 #### Multivariate variabel
 Tahap ini bertujuan untuk melihat apakah ada korelasi antara data numerik dengan data target yaitu 'Fire Alarm'
@@ -90,7 +92,8 @@ correlation_matrix = sp.corr().round(2)
 sns.heatmap(data=correlation_matrix, annot=True, cmap='Purples', linewidths=0.5, )
 plt.title("Correlation Matrix untuk Fitur Numerik ", size=20)
 ```
-![gambar](https://github.com/HanaOctavia/asset-projek-1/blob/b94d01a3637e4aa6df04f94a5e52380181de0e99/metrik.png))
+![metrik](https://user-images.githubusercontent.com/86582130/190961212-1564349a-7200-4903-ad4a-e51465f36f4b.png)
+
 Dari visualisasi di atas ada beberapa kesimpulan
 - variabel CNT memiliki korelasi yang paling tinggi dengan Fire Alarm, namun sayangnya data yang dimiliki tidak berpengaruh pada Fire alarm karena hanya merupakan data Simple count
 - variabel TVOC[ppb] memiliki korelasi yang paling tinggi dengan variabele fire alarm
@@ -119,7 +122,9 @@ Setelah itu kita dapat mengecek nilai mean dan standar deviasi, menggunakan kode
 ```
 X_train[numerical_features].describe().round(4)
 ```
-![images](https://github.com/HanaOctavia/asset-projek-1/blob/b94d01a3637e4aa6df04f94a5e52380181de0e99/mean%20dan%20deviasi.png)
+
+![mean dan deviasi](https://user-images.githubusercontent.com/86582130/190961165-24272516-7a28-4655-9db1-e2b8577a3115.png)
+
 Dari gambar di atas menunjukan nilai mean = 0 dan standar deviasi = 1.
 
 ## Modeling
@@ -195,7 +200,8 @@ LR f1 score : 1.000
 ```
 Plot metrik dengan bar chart :
 
-![gambar](https://github.com/HanaOctavia/asset-projek-1/blob/8efd70cb9fc0379a04601425fc6f0d021a062f6f/plot%20metrik.png)
+![plot metrik](https://user-images.githubusercontent.com/86582130/190961097-7d86cf58-cce0-4de4-a34e-a0b07b354d2d.png)
+
 
 Dari gambar di atas, skor akurasi dan f1 untuk model svc dan LR bernilai 1 sesuai dengan perhitungan di atas, tetapi model bnb juga pada skor akurasi dan f1 bernilai 1 di plot tetapi tidak sesuai dengan perhitungan di atas yaitu acc = 0.820 dan f1_score = 0,820.
 
@@ -210,5 +216,6 @@ Available at: https://buleleng.bulelengkab.go.id/informasi/detail/artikel/58-men
 [2] Dewi, I. P., Lhaksmana, K. M. & Jondri, 2021. Prediksi Retweet Menggunakan Metode Bernoulli dan Gaussian Naive Bayes di Media Sosial Twitter Dengan Topik Vaksinasi Covid-19. *e-Proceeding of Engineering*. 2021. 8(5), pp. 11216-11225.
 [3]Ichwan, M., Dewi, I. A. & S, Z. M., 2018. Klasifikasi Support Vector Machine (SVM) Untuk Menentukan TingkatKemanisan Mangga Berdasarkan Fitur Warna. *MIND Journal* , 3(2), pp. 16-24.
 [4]Satria, F., Zamhariri & Syaripudin, M. A., 2020. Prediksi Ketepatan Waktu Lulus Mahasiswa Menggunakan Algoritma C4.5 Pada Fakultas Dakwah Dan Ilmu Komunikasi UIN Raden Intan Lampung. *Jurnal Ilmiah MATRIK*, 22(1), pp. 28-35.
+
 
 
