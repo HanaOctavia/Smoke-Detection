@@ -59,7 +59,8 @@ Dataset ini memiliki target variabel dengan value biner (0 dan 1). Selain itu, d
 #### Mengatasi Outliners
 Mengecek apakah variabel-variabel yang ada mempunyai outliners dengan boxplot.
 ![boxplotoutliners](https://github.com/HanaOctavia/asset-projek-1/blob/b94d01a3637e4aa6df04f94a5e52380181de0e99/boxplot%20outliners.png)
-Karena variabel-variabel yang ada pada dataset terdeteksi outliners maka kita dapat mengatasinya dengan **IQR Method**
+
+Dari gambar di atas, terlihat bahwa variabel-variabel yang ada pada dataset terdeteksi outliners maka kita dapat mengatasinya dengan **IQR Method**
 Hasil dari penggunaan IQR Method
 ```
 (35684, 15)
@@ -78,6 +79,8 @@ Selanjutnya melakukan visualisasi data untuk numerical_features
 sp.hist(bins=50, figsize=(20,15), color='pink')
 plt.show()
 ```
+![gambar](https://github.com/HanaOctavia/asset-projek-1/blob/266c653d41b4c987b1659c9bed1de8c0712e134b/Screenshot%20(439).png)
+
 #### Multivariate variabel
 Tahap ini bertujuan untuk melihat apakah ada korelasi antara data numerik dengan data target yaitu 'Fire Alarm'
 ```
