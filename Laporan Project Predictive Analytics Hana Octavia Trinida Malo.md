@@ -212,4 +212,4 @@ Available at: https://buleleng.bulelengkab.go.id/informasi/detail/artikel/58-men
 [3]Ichwan, M., Dewi, I. A. & S, Z. M., 2018. Klasifikasi Support Vector Machine (SVM) Untuk Menentukan TingkatKemanisan Mangga Berdasarkan Fitur Warna. *MIND Journal* , 3(2), pp. 16-24.
 [4]Satria, F., Zamhariri & Syaripudin, M. A., 2020. Prediksi Ketepatan Waktu Lulus Mahasiswa Menggunakan Algoritma C4.5 Pada Fakultas Dakwah Dan Ilmu Komunikasi UIN Raden Intan Lampung. *Jurnal Ilmiah MATRIK*, 22(1), pp. 28-35.
 
-
+![gambar](https://github.com/HanaOctavia/asset-projek-1/blob/37d2ac6cf5aaad3bdcc4f657bcf61f9bc892dc6b/Screenshot%20(4).png)
