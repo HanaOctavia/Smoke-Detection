@@ -130,18 +130,21 @@ Dari gambar di atas menunjukan nilai mean = 0 dan standar deviasi = 1.
 ## Modeling
 Model Machine Learning yang saya gunakan untuk menyelesaikan masalah adalah :
 1. Bernoulli Naive Bayes
+
 Dalam penelitian Dewi dkk menyatakan bahwa Bernoulli Naïve bayes lebih unggul dibanding metode Gaussian Naïve Bayes, dikarenakan data yang digunakan untuk penelian terdiri dari beberapa variabel yang memiliki nilai biner. [2] Cara kerja Naive bayes sendiri adalah menghitung peluang dari satu kelas dari masing-masing kelompok atribut yang ada dan menentukan kelas mana yang paling optimal. Pada kasus ini saya menghitung peluang adanya asap rokok dengan menggunakan beberapa variabel yang ada.
 ```
 bnb = BernoulliNB()
 ```
 
 2. Support Vector Machine
+
 Dalam penelitian Ichwan dkk metode SVM berdasarkan penelitian ini menyatakan bawah SVM mampu menghasilkan model klasifikasi yang baik meskipun dilatih dengan data yang sedikit. Kelemahan metode SVM berdasarkan penelitian ini adalah sulit diterapkan untuk data yang memiliki jumlah dimensi yang sangat besar[3]. Cara kerja SVM adalah dengan menempatkan garis lurus(decision boundary) untuk membagi 2 kelas. Untuk mendapatkan decision boundary terbaik, svm menggunakan metode Soft-Margin, dan kernel. Dalam pelatihan model, saya menggunakan SVM untuk 2 kelas yaitu ada asap rokok dan tidak ada asap rokok.
 ```
 svc = SVC(random_state = 42)
 ```
 
 3. Logistic Regression
+
 Regresi Logistik adalah metode klasifikasi yang memperkirakan probabilitas suatu peristiwa terjadi. Pada kasus ini, yaitu pendeteksi asap rokok yang merupakan kalasifikasi ada atau tidaknya asap rokok, logistic regression bekerja dengan menghitung probabilitas kelas dari sampel yang ada. 
 ```
 LR = LogisticRegression(solver='lbfgs', max_iter=1000)
