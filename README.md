@@ -102,6 +102,7 @@ Dari visualisasi di atas ada beberapa kesimpulan
 ## Data Preparation
 Pada Data Preparation ada beberapa tahap yang harus dilakukan
 1. Membagi data train dan data test
+
 Pembagian dataset menjadi data train dan data test ini dilakukan dengan perbandingan 8:2 sehingga pada test_size diset 0.2. Pembagian dataset ini bertujuan agar memudahkan kita dalam proses evaluasi performa model dan agar kita tidak mengotori data uji dengan informasi yang kita dapat dari data latih. 
 
 ```
@@ -115,6 +116,7 @@ Jumlah data test: 7137
 ```
 
 2. Melakukan Standarisasi Data numerik
+
 Pada tahap ini kita akan melakukan standarisasi pada data numerik agar data yang kita miliki mempunyai skala yang sama sehingga dapat diolah oleh algoritma
 StandardScaler melakukan proses standarisasi fitur dengan mengurangkan mean (nilai rata-rata) kemudian membaginya dengan standar deviasi untuk menggeser distribusi.  StandardScaler menghasilkan distribusi dengan standar deviasi sama dengan 1 dan mean sama dengan 0. 
 
