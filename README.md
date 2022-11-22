@@ -159,10 +159,13 @@ Maka dari itu **model terbaik** untuk solusi dari masalah yang dipaparkan adalah
 
 ## Evaluation
 Untuk mengevaluasi model saya menggunakan 2 metrik yaitu akurasi dan f1 score
+
 1. Akurasi
+
 Akurasi adalah teknik pengukuran model yang nantinya hasil pengukurannya dapat mengetahui kinerja dari model[3]
 
 Formula perhitungan akurasi adalah :
+
 -----**Akurasi = (data berhasil/jumlah data) × 100%**----
 
 Berikut ini adalah potongan kode untuk melihat akurasi model yang sudah dilatih
@@ -182,10 +185,13 @@ bnb acc score : 0.820
 svc acc score : 1.000
 LR acc score : 1.000
 ```
+
 2. f1 Score
+
 F1-Score memiliki teknik pengukuran pada model klasifikasi yang baik. Dengan menggunakan f1-score sebagai acuan, dapat mengukur kinerja sistem lebih baik dari pada akurasi dan precision[4]
 
 -----**F1 Score = 2 × (Recall×Precission) / (Recall + Precission)**----
+
 Berikut ini adalah potongan kode untuk melihat f1 score model yang sudah dilatih
 
 ```
