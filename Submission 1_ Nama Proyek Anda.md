@@ -1,4 +1,4 @@
-# Submission 1: Nama Proyek Anda
+# Submission 1: Stream Game Review
 
 Nama : Hana Octavia Trinida Malo
 Username dicoding : Hana Octavia Trinida Malo
@@ -13,3 +13,6 @@ Username dicoding : Hana Octavia Trinida Malo
 | Arsitektur model | Pada proses pengembangan model menggunakan komponen Trainer, sedangkan pada proses analisis dan validasi model menggunakan komponen Resolver dan Evaluator. Untuk arsitektur model bisa dilihat di gambar 1 |
 | Metrik evaluasi | Untuk Mengevaluasi model, ada beberapa metrik yang digunakan, seperti   ExampleCount, AUC, FalsePositives, TruePositives, FalseNegatives, TrueNegatives, BinaryAccuracy', |
 | Performa model | Performa model yang dibangun menunjukan peforma yang cukup baik |
+
+Gambar 1
+![Screenshot (658)](https://user-images.githubusercontent.com/86582130/216260115-7dbd482f-78a5-47b7-99ef-fb8e6c066dd5.png)
