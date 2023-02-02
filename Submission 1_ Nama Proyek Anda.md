@@ -11,7 +11,7 @@ Username dicoding : Hana Octavia Trinida Malo
 | Solusi machine learning | Berdasarkan Masalah di atas maka dibutuhkan beberapa tahapan atau proses seperti pengolahan data dan pengembangan model machine learning |
 | Metode pengolahan | Pada Proses pengolahan data, memiliki 3 proses, yaitu proses data ingestion yang menggunakan komponen ExampleGen, data validation yang menggunakan beberapa komponen yang disediakan oleh TFX, seperti StatisticGen, SchemaGen, dan ExampleValidator, dan yang terakhir data preprocessing yang menggunakan komponen Transform|
 | Arsitektur model | Pada proses pengembangan model menggunakan komponen Trainer, sedangkan pada proses analisis dan validasi model menggunakan komponen Resolver dan Evaluator. Untuk arsitektur model bisa dilihat di gambar 1 |
-| Metrik evaluasi | Untuk Mengevaluasi model, ada beberapa metrik yang digunakan, seperti   ExampleCount, AUC, FalsePositives, TruePositives, FalseNegatives, TrueNegatives, BinaryAccuracy', |
+| Metrik evaluasi | Untuk Mengevaluasi model, ada beberapa metrik yang digunakan, seperti   ExampleCount, AUC, FalsePositives, TruePositives, FalseNegatives, TrueNegatives, BinaryAccuracy |
 | Performa model | Performa model yang dibangun menunjukan peforma yang cukup baik |
 
 Gambar 1
