@@ -181,9 +181,9 @@ for nama_model, model in models:
 
 Hasil dari metrik akurasi adalah :
 ```
-bnb acc score : 0.820
-svc acc score : 1.000
-LR acc score : 1.000
+bnb acc score : 0.934
+svc acc score : 0.999
+LR acc score : 0.999
 ```
 
 2. f1 Score
@@ -205,9 +205,9 @@ for nama_model, model in models:
 ```
 Hasil dari metrik akurasi adalah :
 ```
-bnb f1 score : 0.884
-svc f1 score : 1.000
-LR f1 score : 1.000
+bnb f1 score : 0.928
+svc f1 score : 0.999
+LR f1 score : 0.999
 ```
 Plot metrik dengan bar chart :
 
